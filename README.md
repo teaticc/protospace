@@ -11,7 +11,6 @@
   ## association
     ### belongs to user, has many comments, sub_ images, goos
   ## table
-       -img
        -copy
        -concept
        -title
@@ -32,11 +31,12 @@
        -user_id
        -prototype_id
 
-# Sub_image
+# Capturedimage
   ## association
     ### belongs to prototype
   ## table
        -img_url
        -prototype_id
+       -image_type
 
 
