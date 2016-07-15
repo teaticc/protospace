@@ -2,12 +2,9 @@
   ## association
     ### has many comments, Prototypes, Goos
   ## table
-       -user_name
-       -e_mail
-       -password
        -member
        -profile
-       -photo
+       -avatar
        -works
 
 # Prototype
@@ -41,5 +38,5 @@
   ## table
        -img_url
        -prototype_id
-       
+
 
