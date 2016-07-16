@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {:registrations => "users/registrations"}
+  devise_for :users
+ # , :controllers => {:registrations => "users/registrations"}
   root 'prototypes#index'
   get  '/prototypes/index'  =>    'prototypes#index'
   get  '/prototypes/new'    =>    'prototypes#new'
