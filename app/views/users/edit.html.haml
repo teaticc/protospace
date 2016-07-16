@@ -34,3 +34,5 @@
               2014 Cookpad inc. Designer
     .row.text-center.user-btn
       %button.btn.btn-lg.btn-primary.btn-block{type: "submit"} Save
+- flash.each do |key, value|
+  = content_tag(:div, value, class: "#{key}")
