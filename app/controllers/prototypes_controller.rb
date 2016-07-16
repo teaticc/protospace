@@ -1,4 +1,4 @@
-class Prototype < ActiveRecord::Base
+class PrototypesController < ApplicationController
   def index
   end
 

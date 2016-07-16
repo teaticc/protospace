@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715105505) do
+ActiveRecord::Schema.define(version: 20160716020853) do
 
   create_table "prototypes", force: :cascade do |t|
-    t.string   "copy"
-    t.string   "concept"
-    t.string   "title"
-    t.integer  "user_id"
+    t.string   "copy",       limit: 255
+    t.string   "concept",    limit: 255
+    t.string   "title",      limit: 255
+    t.integer  "user_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
