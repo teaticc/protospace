@@ -7,7 +7,7 @@
           .user-name.col-md-10
             = f.text_field :name, placeholder:"Username", value: @user.name
           .user-image.col-md-2{style: "background-image: url(#{@user.avatar});"}
-            %button.btn.btn-primary Change image
+          = button_tag "Change image", class: "btn btn-primary"
             %input{type: "file"}/
         = f.text_field :email, placeholder: "E-mail", value: @user.email,class: "user-email"
         = f.password_field :password, placeholder: "Password" ,class: "user-password"
