@@ -5,17 +5,17 @@
         %h2 Edit Profile
         .user-name_image.row
           .user-name.col-md-10
-            =f.text_field :name, placeholder:"Username", value: "#{@user.name}"
-          .user-image.col-md-2{style: 'background-image: url(#{@user.avatar});'}
+            =f.text_field :name, placeholder:"Username", value: @user.name
+          .user-image.col-md-2{style: "background-image: url(#{@user.avatar});"}
             %button.btn.btn-primary Change image
             %input{type: "file"}/
-        =f.text_field :email, placeholder: "E-mail", value: "#{@user.email}",class: "user-email"
+        =f.text_field :email, placeholder: "E-mail", value: @user.email,class: "user-email"
         =f.text_field :password, placeholder: "Password" ,class: "user-password"
       .col-md-12
         %h4 Member of
         .user-user-member.row
           .user-name.col-md-12
-            =f.text_field :text, placeholedr: "Member", value: "#{@user.member}"
+            =f.text_field :member, placeholedr: "Member", value: @user.member
         %h4 Profile
         .user-user-profile.row
           .user-name.col-md-12
