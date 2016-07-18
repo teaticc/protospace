@@ -7,5 +7,5 @@ class Prototype < ActiveRecord::Base
 
   def show
   end
-  
+
 end
