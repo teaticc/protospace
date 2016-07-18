@@ -7,7 +7,12 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %p.alert= alert
+    -flash.each do |key, value|
+      %div{class: "alert alert-#{key}"}
+        %a.close{"data-dismiss" => "alert", :href => "#"} ×
+        %ul
+          %li
+            = value
     = render "layouts/header"
     = yield
     = render "layouts/footer"
