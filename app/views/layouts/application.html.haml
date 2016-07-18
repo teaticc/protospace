@@ -8,7 +8,7 @@
     = csrf_meta_tags
   %body
     - flash.each do |key, value|
-      .alert{class: "alert-#{key}"}
+      %div{class: "alert alert-#{key}"}
         %a.close{"data-dismiss" => "alert", :href => "#"} ×
         %ul
           %li
