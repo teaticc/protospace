@@ -9,7 +9,7 @@
 
 # Prototype
 ## association
-### belongs to user, has many comments, sub_ images, goods
+### belongs to user, has many comments, Capturedimage, goods
 ## table
 -copy
 -concept
