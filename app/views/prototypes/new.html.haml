@@ -4,20 +4,20 @@
       .col-md-12
         = f.text_field :title, class: "proto-new-title",  placeholder: "Title"
     .row
-      .col-md-12
-        .cover-image-upload
-          %input{type: "file"}/
-      .col-md-12
-        %ul.proto-sub-list.list-group
-          %li.list-group-item.col-md-4
-            .image-upload
-              %input{type: "file"}/
-          %li.list-group-item.col-md-4
-            .image-upload
-              %input{type: "file"}/
-          %li.list-group-item.col-md-4
-            .image-upload-plus
-              %span +
+      = f.fields_for :captured_images do |captured_image|
+        .col-md-12
+          .cover-image-upload
+            = captured_image.file_field :image_url
+            = captured_image.hidden_field :image_type, value: "main"
+        .col-md-12
+          %ul.proto-sub-list.list-group
+            - i = 1
+            - for i in 1..3 do
+              %li.list-group-item.col-md-4
+                .image-upload
+                  = f.fields_for :captured_images do |captured_image|
+                    = captured_image.file_field :image_url
+                    = captured_image.hidden_field :image_type, value: "sub"
     .row.proto-description
       .col-md-12
         = f.text_field :copy, placeholder: "Catch Copy"
