@@ -1,5 +1,7 @@
 class PrototypesController < ApplicationController
+
   def index
+    @prototypes = Prototype.order(id: :desc)
   end
 
   def new
@@ -7,8 +9,6 @@ class PrototypesController < ApplicationController
     @prototype.captured_images.build
   end
 
-  def show
-  end
 
   def create
     prototype = Prototype.new(prototype_params)
@@ -17,6 +17,9 @@ class PrototypesController < ApplicationController
     else
       redirect_to new_prototypes_path, alert: "登録内容に不備があります"
     end
+  end
+
+  def show
   end
 
   private
