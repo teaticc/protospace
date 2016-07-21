@@ -1,7 +1,7 @@
 class PrototypesController < ApplicationController
 
   def index
-    @prototypes = Prototype.order(id: :desc).page(params[:page]).per(8)
+    @prototypes = Prototype.order(id: :desc).page(params[:page]).per(1)
   end
 
   def new
@@ -20,6 +20,7 @@ class PrototypesController < ApplicationController
   end
 
   def show
+    @prototype = Prototype.find(params[:id])
   end
 
   private
