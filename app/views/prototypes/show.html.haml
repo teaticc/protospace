@@ -24,8 +24,9 @@
     .col-md-3
       %ul.proto-sub-list.list-group
         - @prototype.captured_images.where(img_type:1).each do |sub_img|
-          %li.list-group-item
-            = image_tag(sub_img.img_url.to_s, class: 'img-responsive')
+          - unless sub_img.img_url.url == nil
+            %li.list-group-item
+              = image_tag(sub_img.img_url.to_s, class: 'img-responsive')
   .row.proto-description
     .col-md-3
       %h4 Catch Copy
