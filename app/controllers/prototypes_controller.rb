@@ -1,8 +1,7 @@
 class PrototypesController < ApplicationController
 
   def index
-    @prototypes = Prototype.order(id: :desc).page(params[:page]).per(2)
-    binding.pry
+    @prototypes = Prototype.order(id: :desc).page(params[:page]).per(1)
   end
 
   def new
@@ -14,7 +13,6 @@ class PrototypesController < ApplicationController
   def create
     prototype = Prototype.new(prototype_params)
     if prototype.save
-      binding.pry
       redirect_to :root
     else
       redirect_to new_prototypes_path, alert: "登録内容に不備があります"

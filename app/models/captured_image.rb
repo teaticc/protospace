@@ -1,4 +1,5 @@
 class CapturedImage < ActiveRecord::Base
-  enum image_type: { main_image: 0, sub_image: 1 }
+  mount_uploader :img_url, CapturedImageUploader
+  enum img_type: { main: 0, sub: 1 }
   belongs_to :prototype
 end
