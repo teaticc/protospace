@@ -15,7 +15,7 @@ class PrototypesController < ApplicationController
     if prototype.save
       redirect_to :root
     else
-      redirect_to new_prototypes_path, alert: "登録内容に不備があります"
+      redirect_to new_prototype_path, alert: "登録内容に不備があります"
     end
   end
 
