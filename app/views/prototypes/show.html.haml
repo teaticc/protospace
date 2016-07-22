@@ -9,7 +9,7 @@
           %h4#top-aligned-media.media-heading
             = @prototype.title
           .proto-user
-            = link_to "by #{@prototype.user.name}", user_path(id: @prototype.user)
+            = link_to "by #{@prototype.user.name}", user_path(@prototype.user)
             %span.degree
               = @prototype.user.member
               = @prototype.user.works
@@ -37,7 +37,7 @@
       %p
         = @prototype.concept
     - if current_user.id == @prototype.user_id
-      = button_to "Edit", edit_prototype_path(id: @prototype), class: "btn btn-primary btn-lg"
+      = button_to "Edit", edit_prototype_path(@prototype), class: "btn btn-primary btn-lg"
     .col-md-3
       %h4 Tag List
       %ul.proto-tag-list.list-inline
