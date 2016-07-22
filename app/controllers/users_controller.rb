@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user
 
   def show
-    @prototypes = @user.prototypes.page(params[:page]).order(id: :desc)
+    # eager_load効いてない(captured_imagesにもやると逆に遅くなる)
+    @prototypes = @user.prototypes.eager_load(:user).page(params[:page]).order(id: :desc)
   end
 
   def edit
