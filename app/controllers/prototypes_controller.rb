@@ -1,5 +1,4 @@
 class PrototypesController < ApplicationController
-
   def index
     @prototypes = Prototype.order(id: :desc).page(params[:page])
   end
@@ -8,7 +7,6 @@ class PrototypesController < ApplicationController
     @prototype = Prototype.new
     @prototype.captured_images.build
   end
-
 
   def create
     prototype = Prototype.new(prototype_params)
