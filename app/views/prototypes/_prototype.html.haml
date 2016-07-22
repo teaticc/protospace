@@ -1,0 +1,17 @@
+.col-sm-4.col-md-3.proto-content
+  / .dropdown.drop_menu_location /javascriptでドロップダウンボタンつける
+  .thumbnail
+    = link_to image_tag(prototype.captured_images.find_by(img_type: "main").img_url.url), prototype_path(prototype)
+    .caption
+      %h3
+        =prototype.title
+      .proto-meta
+        .proto-user
+          = link_to "by #{prototype.user.name}", user_path(prototype)
+        .proto-posted
+          = prototype.created_at.strftime("%b %d")
+      %ul.proto-tag-list.list-inline
+        %li
+          %a{href: "#", class: "btn btn-default"} iPad
+        %li
+          %a{href: "#", class: "btn btn-default"} wireframe
