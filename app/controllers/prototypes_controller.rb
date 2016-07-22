@@ -14,7 +14,7 @@ class PrototypesController < ApplicationController
   def create
     prototype = Prototype.new(prototype_params)
     if prototype.save
-      redirect_to :root
+      redirect_to :root, notice: "投稿しました"
     else
       redirect_to new_prototype_path, alert: "登録内容に不備があります"
     end
