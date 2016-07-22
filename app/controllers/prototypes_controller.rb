@@ -1,4 +1,10 @@
 class PrototypesController < ApplicationController
+  before_action :set_prototype, only: [:show]
+
+  def set_prototype
+    @prototype = Prototype.find(params[:id])
+  end
+
   def index
     @prototypes = Prototype.order(id: :desc).page(params[:page])
   end
@@ -18,7 +24,6 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    @prototype = Prototype.find(params[:id])
   end
 
   private
