@@ -2,16 +2,16 @@
   .thumbnail
     = link_to prototype_path(id: prototype.id) do
       = image_tag(prototype.captured_images.find_by(img_type: "main").img_url.url)
-      .caption
-        %h3
-          =prototype.title
-        .proto-meta
-          .proto-user
-            = link_to "by #{prototype.user.name}", user_path(id: prototype.user.id)
-          .proto-posted
-            = prototype.created_at.strftime("%b %d")
-        %ul.proto-tag-list.list-inline
-          %li
-            %a{href: "#", class: "btn btn-default"} iPad
-          %li
-            %a{href: "#", class: "btn btn-default"} wireframe
+    .caption
+      %h3
+        =prototype.title
+      .proto-meta
+        .proto-user
+          = link_to "by #{prototype.user.name}", user_path(id: prototype.user.id)
+        .proto-posted
+          = prototype.created_at.strftime("%b %d")
+      %ul.proto-tag-list.list-inline
+        %li
+          %a{href: "#", class: "btn btn-default"} iPad
+        %li
+          %a{href: "#", class: "btn btn-default"} wireframe
