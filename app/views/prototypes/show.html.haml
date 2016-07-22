@@ -24,7 +24,7 @@
     .col-md-3
       %ul.proto-sub-list.list-group
         - @prototype.img_get("sub").each do |sub_img|
-          - unless sub_img.img_url.url == nil
+          - if sub_img.img_url.url.present?
             %li.list-group-item
               = image_tag(sub_img.img_url, class: 'img-responsive')
   .row.proto-description
