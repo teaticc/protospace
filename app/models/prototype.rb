@@ -11,5 +11,4 @@ class Prototype < ActiveRecord::Base
       captured_images.sub
     end
   end
-
 end
