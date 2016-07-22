@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :set_prototype, only: [:show]
+  before_action :set_prototype, only: [:show, :edit]
 
   def index
     # eager_loadがcaptured_imagesに効いてない<=要修正
@@ -21,6 +21,21 @@ class PrototypesController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+    binding.pry
+    prototype = Prototype.find(params[:id])
+    if prototype.user_id == current_user.id
+      prototype.destroy
+    end
+    redirect_to :root
   end
 
   private
