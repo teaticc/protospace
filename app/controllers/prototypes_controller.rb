@@ -1,10 +1,6 @@
 class PrototypesController < ApplicationController
   before_action :set_prototype, only: [:show]
 
-  def set_prototype
-    @prototype = Prototype.find(params[:id])
-  end
-
   def index
     @prototypes = Prototype.order(id: :desc).page(params[:page])
   end
@@ -27,6 +23,10 @@ class PrototypesController < ApplicationController
   end
 
   private
+
+  def set_prototype
+    @prototype = Prototype.find(params[:id])
+  end
 
   def prototype_params
     params.require(:prototype).permit(:copy, :concept, :title, captured_images_attributes: [:img_url, :img_type]).merge({user_id: current_user.id})
