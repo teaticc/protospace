@@ -20,10 +20,10 @@
         %span.num 20
   .row
     .col-md-9
-      = image_tag(@prototype.captured_images.find_by(img_type: "main").img_url.to_s, class: 'img-responsive')
+      = image_tag(@prototype.captured_images.main[0].img_url.to_s, class: 'img-responsive')
     .col-md-3
       %ul.proto-sub-list.list-group
-        - @prototype.captured_images.where(img_type:1).each do |sub_img|
+        - @prototype.captured_images.sub.each do |sub_img|
           - unless sub_img.img_url.url == nil
             %li.list-group-item
               = image_tag(sub_img.img_url.to_s, class: 'img-responsive')

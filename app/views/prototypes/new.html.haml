@@ -8,7 +8,7 @@
         .col-md-12
           .cover-image-upload
             = captured_image.file_field :img_url
-            = captured_image.hidden_field :img_type, value: "main"
+            = captured_image.hidden_field :img_type, value: 0
         .col-md-12
           %ul.proto-sub-list.list-group
             - 3.times do |captured_images|
@@ -16,7 +16,7 @@
                 .image-upload
                   = f.fields_for :captured_images do |captured_image|
                     = captured_image.file_field :img_url
-                    = captured_image.hidden_field :img_type, value: "sub"
+                    = captured_image.hidden_field :img_type, value: 1
     .row.proto-description
       .col-md-12
         = f.text_field :copy, placeholder: "Catch Copy"
