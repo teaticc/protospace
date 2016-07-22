@@ -2,7 +2,8 @@ class PrototypesController < ApplicationController
   before_action :set_prototype, only: [:show]
 
   def index
-    @prototypes = Prototype.order(id: :desc).page(params[:page])
+    # eager_loadがcaptured_imagesに効いてない<=要修正
+    @prototypes = Prototype.order(id: :desc).eager_load(:captured_images,:user).page(params[:page])
   end
 
   def new
