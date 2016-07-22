@@ -7,7 +7,7 @@
         =prototype.title
       .proto-meta
         .proto-user
-          = link_to "by #{prototype.user.name}", user_path(id: prototype.user.id)
+          = link_to "by #{prototype.user.name}", user_path(id: prototype.user)
         .proto-posted
           = prototype.created_at.strftime("%b %d")
       %ul.proto-tag-list.list-inline
