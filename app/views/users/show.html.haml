@@ -24,7 +24,6 @@
               = @user.works
 .container.proto-list
   .row
-    - @prototypes.each do |p|
-      =render partial: "prototypes/prototype", locals: {prototype: p}
+    = render @prototypes, partial: "prototypes/prototype"
 .text-center
   = paginate(@prototypes)
