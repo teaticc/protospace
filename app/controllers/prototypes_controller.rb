@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :set_prototype, only: [:show, :edit]
+  before_action :set_prototype, only: [:show, :edit, :destroy, :update]
 
   def index
     # eager_loadがcaptured_imagesに効いてない<=要修正
@@ -24,16 +24,16 @@ class PrototypesController < ApplicationController
   end
 
   def edit
+    (4 - @prototype.captured_images.length).times{@prototype.captured_images.new(img_type: "sub")}
   end
-
   def update
+    @prototype.update(prototype_params)
+    redirect_to :root, notice: "successfully updated!"
   end
 
   def destroy
-    binding.pry
-    prototype = Prototype.find(params[:id])
-    if prototype.user_id == current_user.id
-      prototype.destroy
+    if @prototype.user_id == current_user.id
+      @prototype.destroy
     end
     redirect_to :root
   end
@@ -45,6 +45,6 @@ class PrototypesController < ApplicationController
   end
 
   def prototype_params
-    params.require(:prototype).permit(:copy, :concept, :title, captured_images_attributes: [:img_url, :img_type]).merge({user_id: current_user.id})
+    params.require(:prototype).permit(:copy, :concept, :title, captured_images_attributes: [:img_url, :img_type, :id]).merge({user_id: current_user.id})
   end
 end
