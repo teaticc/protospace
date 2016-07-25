@@ -20,4 +20,4 @@
 /config/database.yml
 
 # Ignore uploaded files
-/public/uploads/captured_image
+/public/uploads

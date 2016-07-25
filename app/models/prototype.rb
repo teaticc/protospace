@@ -12,4 +12,9 @@ class Prototype < ActiveRecord::Base
       captured_images.sub
     end
   end
+
+  def sub_img_with_blank
+   (4 - self.captured_images.length).times{self.captured_images.build(img_type: "sub")}
+   self.captured_images[1..3]
+  end
 end
