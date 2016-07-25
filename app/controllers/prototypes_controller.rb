@@ -31,7 +31,8 @@ class PrototypesController < ApplicationController
     if @prototype.update(prototype_params)
       redirect_to root_path, notice: "successfully updated!"
     else
-      redirect_to edit_prototype_path(@prototype), alert: "入力内容に不備があります"
+      # redirect_to edit_prototype_path(@prototype), alert: "入力内容に不備があります"
+      render :edit
     end
   end
 
