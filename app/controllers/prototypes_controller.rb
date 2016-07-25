@@ -14,7 +14,7 @@ class PrototypesController < ApplicationController
   def create
     prototype = Prototype.new(prototype_params)
     if prototype.save
-      redirect_to :root, notice: "投稿しました"
+      redirect_to root_path, notice: "投稿しました"
     else
       redirect_to new_prototype_path, alert: "登録内容に不備があります"
     end
@@ -29,14 +29,14 @@ class PrototypesController < ApplicationController
 
   def update
     @prototype.update(prototype_params)
-    redirect_to :root, notice: "successfully updated!"
+    redirect_to root_path, notice: "successfully updated!"
   end
 
   def destroy
     if @prototype.user_id == current_user.id
       @prototype.destroy
     end
-    redirect_to :root
+    redirect_to root_path, notice: "successfully deleted"
   end
 
   private
