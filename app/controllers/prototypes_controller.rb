@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :set_prototype, only: [:show]
+  before_action :set_prototype, only: [:show, :edit, :destroy, :update]
 
   def index
     # eager_loadがcaptured_imagesに効いてない<=要修正
@@ -12,15 +12,34 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    prototype = Prototype.new(prototype_params)
-    if prototype.save
-      redirect_to :root, notice: "投稿しました"
+    @prototype = Prototype.new(prototype_params)
+    if @prototype.save
+      redirect_to root_path, notice: "投稿しました"
     else
-      redirect_to new_prototype_path, alert: "登録内容に不備があります"
+      render :new
     end
   end
 
   def show
+  end
+
+  def edit
+    @sub_img = @prototype.sub_img_with_blank
+  end
+
+  def update
+    if @prototype.update(prototype_params)
+      redirect_to root_path, notice: "successfully updated!"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    if @prototype.user_id == current_user.id
+      @prototype.destroy
+    end
+    redirect_to root_path, notice: "successfully deleted"
   end
 
   private
@@ -30,6 +49,6 @@ class PrototypesController < ApplicationController
   end
 
   def prototype_params
-    params.require(:prototype).permit(:copy, :concept, :title, captured_images_attributes: [:img_url, :img_type]).merge({user_id: current_user.id})
+    params.require(:prototype).permit(:copy, :concept, :title, captured_images_attributes: [:img_url, :img_type, :id]).merge({user_id: current_user.id})
   end
 end

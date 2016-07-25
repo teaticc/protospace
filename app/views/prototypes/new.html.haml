@@ -1,3 +1,9 @@
+- if @prototype.errors.any?
+  #error_explanation
+    %ul.alert-error.alert
+      %a.close{"data-dismiss" => "alert", :href => "#"} ×
+      - @prototype.errors.full_messages.each do |msg|
+        %li= msg
 = form_for(@prototype, html: {class: "container proto-new"}) do |f|
   .col-md-8.col-md-offset-2
     %header.row.user-nav.row
@@ -6,17 +12,17 @@
     .row
       = f.fields_for :captured_images do |captured_image|
         .col-md-12
-          .cover-image-upload
+          .cover-image-upload.height500
             = captured_image.file_field :img_url
             = captured_image.hidden_field :img_type, value: "main"
-        .col-md-12
-          %ul.proto-sub-list.list-group
-            - 3.times do |captured_images|
-              %li.list-group-item.col-md-4
-                .image-upload
-                  = f.fields_for :captured_images do |captured_image|
-                    = captured_image.file_field :img_url
-                    = captured_image.hidden_field :img_type, value: "sub"
+      .col-md-12
+        %ul.proto-sub-list.list-group
+          - 3.times do |captured_images|
+            %li.list-group-item.col-md-4
+              .image-upload.height200
+                = f.fields_for :captured_images do |captured_image|
+                  = captured_image.file_field :img_url
+                  = captured_image.hidden_field :img_type, value: "sub"
     .row.proto-description
       .col-md-12
         = f.text_field :copy, placeholder: "Catch Copy"
