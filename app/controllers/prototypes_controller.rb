@@ -16,7 +16,7 @@ class PrototypesController < ApplicationController
     if @prototype.save
       redirect_to root_path, notice: "投稿しました"
     else
-      render :edit
+      render :new
     end
   end
 
