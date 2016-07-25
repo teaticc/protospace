@@ -1,35 +1,36 @@
-= form_for(@prototype, html: {class: "container proto-new"}) do |f|
-  .col-md-8.col-md-offset-2
-    %header.row.user-nav.row
-      .col-md-12
-        = f.text_field :title, class: "proto-new-title",  placeholder: "Title"
-    .row
-      = f.fields_for :captured_images, @prototype.captured_images.main do |captured_image|
+%div.container.proto-new
+  = form_for @prototype do |f|
+    .col-md-8.col-md-offset-2
+      %header.row.user-nav.row
         .col-md-12
-          .cover-image-upload
-            = captured_image.file_field :img_url
-            = image_tag @prototype.img_get("main").img_url, class: "fit_img"
-      .col-md-12
-        %ul.proto-sub-list.list-group
-          = f.fields_for :captured_images, @sub_img do |captured_image|
-            %li.list-group-item.col-md-4
-              .image-upload
-                = captured_image.file_field :img_url
-                = captured_image.hidden_field :img_type, value: "sub"
-                = image_tag captured_image.object.img_url, class: "fit_img"
-    .row.proto-description
-      .col-md-12
-        = f.text_field :copy, placeholder: "Catch Copy"
-      .col-md-12
-        = f.text_area :concept, size: "30x4", placeholder: "Concept"
-      .col-md-12
-        %h4 Tag List
-        .row
-          .col-md-3
-            %input{type: "text", placeholder: "Web Design"}/
-          .col-md-3
-            %input{type: "text", placeholder: "UI"}/
-          .col-md-3
-            %input{type: "text", placeholder: "Application"}/
-    .row.text-center.proto-btn
-      = f.button "Publish", class: "btn btn-lg btn-primary btn-block"
+          = f.text_field :title, class: "proto-new-title",  placeholder: "Title", autofocus: true
+      .row
+        = f.fields_for :captured_images, @prototype.captured_images.main do |captured_image|
+          .col-md-12
+            .cover-image-upload
+              = captured_image.file_field :img_url
+              = image_tag @prototype.img_get("main").img_url, class: "fit_img"
+        .col-md-12
+          %ul.proto-sub-list.list-group
+            = f.fields_for :captured_images, @sub_img do |captured_image|
+              %li.list-group-item.col-md-4
+                .image-upload
+                  = captured_image.file_field :img_url
+                  = captured_image.hidden_field :img_type, value: "sub"
+                  = image_tag captured_image.object.img_url, class: "fit_img"
+      .row.proto-description
+        .col-md-12
+          = f.text_field :copy, placeholder: "Catch Copy"
+        .col-md-12
+          = f.text_area :concept, size: "30x4", placeholder: "Concept"
+        .col-md-12
+          %h4 Tag List
+          .row
+            .col-md-3
+              %input{type: "text", placeholder: "Web Design"}/
+            .col-md-3
+              %input{type: "text", placeholder: "UI"}/
+            .col-md-3
+              %input{type: "text", placeholder: "Application"}/
+      .row.text-center.proto-btn
+        = f.button "Publish", class: "btn btn-lg btn-primary btn-block"
