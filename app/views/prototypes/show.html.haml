@@ -35,11 +35,10 @@
       %h4 Concept
       %p
         = @prototype.concept
-    - if user_signed_in?
+    - if user_signed_in? && (@prototype.user_id == current_user.id)
       .col-md-12.row
-        - if @prototype.user_id == current_user.id
-          = button_to "Edit", edit_prototype_path(@prototype), method: :get, class: "btn btn-primary btn-lg edit-btn"
-          = button_to "Delete", prototype_path(@prototype), method: :delete, class: "btn btn-primary btn-lg edit-btn"
+        = button_to "Edit", edit_prototype_path(@prototype), method: :get, class: "btn btn-primary btn-lg edit-btn"
+        = button_to "Delete", prototype_path(@prototype), method: :delete, class: "btn btn-primary btn-lg edit-btn"
     .col-md-3
       %h4 Tag List
       %ul.proto-tag-list.list-inline
