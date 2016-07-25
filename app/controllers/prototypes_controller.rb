@@ -24,8 +24,9 @@ class PrototypesController < ApplicationController
   end
 
   def edit
-    (4 - @prototype.captured_images.length).times{@prototype.captured_images.new(img_type: "sub")}
+    @sub_img = @prototype.sub_img_with_blank
   end
+
   def update
     @prototype.update(prototype_params)
     redirect_to :root, notice: "successfully updated!"
