@@ -18,6 +18,7 @@
                   = captured_image.file_field :img_url
                   = captured_image.hidden_field :img_type, value: "sub"
                   = image_tag captured_image.object.img_url, class: "fit_img"
+                  / 空画像の場合に消せない四角ができてしまう
       .row.proto-description
         .col-md-12
           = f.text_field :copy, placeholder: "Catch Copy"
