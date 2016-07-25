@@ -1,3 +1,9 @@
+- if @prototype.errors.any?
+  #error_explanation
+    %ul.alert-error.alert
+      %a.close{"data-dismiss" => "alert", :href => "#"} ×
+      - @prototype.errors.full_messages.each do |msg|
+        %li= msg
 = form_for(@prototype, html: {class: "container proto-new"}) do |f|
   .col-md-8.col-md-offset-2
     %header.row.user-nav.row

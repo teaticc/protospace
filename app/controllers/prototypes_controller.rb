@@ -12,11 +12,11 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    prototype = Prototype.new(prototype_params)
-    if prototype.save
+    @prototype = Prototype.new(prototype_params)
+    if @prototype.save
       redirect_to root_path, notice: "投稿しました"
     else
-      redirect_to new_prototype_path, alert: "登録内容に不備があります"
+      render :edit
     end
   end
 
@@ -31,7 +31,6 @@ class PrototypesController < ApplicationController
     if @prototype.update(prototype_params)
       redirect_to root_path, notice: "successfully updated!"
     else
-      # redirect_to edit_prototype_path(@prototype), alert: "入力内容に不備があります"
       render :edit
     end
   end
