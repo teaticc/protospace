@@ -1,16 +1,18 @@
 - if user_signed_in?
   - if prototype.good_user(current_user.id)
     = button_to prototype_good_path("#", prototype_id: prototype.id), method: :delete, class: "btn btn-default", remote: true do
-      = image_tag("icon_heart.svg")
+      = image_tag("icon_heart.jpg")
       Like
       %span.num
         = prototype.good_count
   - else
     = button_to prototype_goods_path(prototype.id), method: :post, class: "btn btn-default", remote: true do
       = image_tag("icon_heart.svg")
-      %span
+      Like
+      %span.num
         = prototype.good_count
 - else
   = image_tag("icon_heart.svg")
-  %span
+  Like
+  %span.num
     = prototype.good_count
