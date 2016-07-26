@@ -1,7 +1,7 @@
 class GoodsController < ApplicationController
   def create
-    Good.create(user_id: current_user.id, prototype_id: params[:prototype_id])
     @prototype = Prototype.find(params[:prototype_id])
+    @prototype.goods.create(user_id: current_user.id)
   end
 
   def destroy
