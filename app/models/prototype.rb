@@ -5,6 +5,7 @@ class Prototype < ActiveRecord::Base
   accepts_nested_attributes_for :captured_images, reject_if: proc { |attributes| attributes["img_url"].blank?}
   validates :title, :copy, :concept , presence: true
   has_many :goods, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def img_get(img_type)
     if img_type == "main"
