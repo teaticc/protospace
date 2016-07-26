@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
   has_many :prototypes
   validates :name, presence: true
   has_many :goods
+  has_many :comments
 end
