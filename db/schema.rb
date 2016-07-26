@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719082105) do
+ActiveRecord::Schema.define(version: 20160725092255) do
 
   create_table "captured_images", force: :cascade do |t|
     t.string   "img_url",      limit: 255
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20160719082105) do
     t.integer  "prototype_id", limit: 4
   end
 
+  create_table "goods", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.integer  "prototype_id", limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "prototypes", force: :cascade do |t|
     t.string   "copy",       limit: 255
     t.string   "concept",    limit: 255
@@ -28,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160719082105) do
     t.integer  "user_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "good_count", limit: 4
   end
 
   create_table "users", force: :cascade do |t|
