@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   def create
     Comment.create(comment_params)
     @prototype = Prototype.find(params[:prototype_id])
-    redirect_to root_path
   end
 
   private
