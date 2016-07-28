@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
+  include Common
+  before_action :set_prototype, only: :create
   def create
-    @prototype = Prototype.find(params[:prototype_id])
     @prototype.comments.create(comment_params)
   end
 

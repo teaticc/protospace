@@ -1,4 +1,5 @@
 class GoodsController < ApplicationController
+  include Common
   before_action :set_prototype, only: :create
 
   def create
@@ -9,9 +10,5 @@ class GoodsController < ApplicationController
     good = Good.find_by(user_id: current_user.id, prototype_id: params[:prototype_id])
     good.destroy
     set_prototype
-  end
-
-  def set_prototype
-    @prototype = Prototype.find(params[:prototype_id])
   end
 end
