@@ -7,10 +7,10 @@
     .row
       %ul.nav.nav-pills.col-lg-11
         %li.active{role: "presentation"}
-          %a{href: "#"} Popular PROTO
+          = link_to "Popular PROTO", "#"
         %li{role: "presentation"}
-          %a{href: "#"} Newest PROTO
-      %button{type: "button", class: "btn btn-default col-lg-1"} View Tags
+          = link_to "Newest PROTO", "#"
+      = button_to "View Tags","", class: "btn btn-default col-lg-1"
 
 .container.proto-list
   .row
