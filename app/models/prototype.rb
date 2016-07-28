@@ -20,7 +20,4 @@ class Prototype < ActiveRecord::Base
    self.captured_images[1..3]
   end
 
-  def good_user(user_id)
-    goods.find_by(user_id: user_id)
-  end
 end
