@@ -1,7 +1,7 @@
 - if @prototype.errors.any?
   #error_explanation
     %ul.alert-error.alert
-      %a.close{"data-dismiss" => "alert", :href => "#"} ×
+      = link_to "×", "#", "data-dismiss": "alert", class: "close"
       - @prototype.errors.full_messages.each do |msg|
         %li= msg
 %div.container.proto-new
