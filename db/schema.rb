@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20160728023837) do
     t.integer  "prototype_id", limit: 4
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.integer  "prototype_id", limit: 4
+    t.text     "comment",      limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "goods", force: :cascade do |t|
     t.integer  "user_id",      limit: 4
     t.integer  "prototype_id", limit: 4
