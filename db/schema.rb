@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725092255) do
+ActiveRecord::Schema.define(version: 20160728022008) do
 
   create_table "captured_images", force: :cascade do |t|
     t.string   "img_url",      limit: 255
@@ -21,12 +21,23 @@ ActiveRecord::Schema.define(version: 20160725092255) do
     t.integer  "prototype_id", limit: 4
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.integer  "prototype_id", limit: 4
+    t.text     "comment",      limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "goods", force: :cascade do |t|
     t.integer  "user_id",      limit: 4
     t.integer  "prototype_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "goods", ["prototype_id"], name: "goods_prototype_id_fk", using: :btree
+  add_index "goods", ["user_id"], name: "goods_user_id_fk", using: :btree
 
   create_table "prototypes", force: :cascade do |t|
     t.string   "copy",       limit: 255
@@ -61,4 +72,3 @@ ActiveRecord::Schema.define(version: 20160725092255) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-end
