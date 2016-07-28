@@ -1,5 +1,5 @@
 - if user_signed_in?
-  - if prototype.good_user(current_user.id)
+  - if good_user current_user.id, prototype.id
     = button_to prototype_good_path(prototype, "#"), method: :delete, class: "btn btn-default", remote: true do
       = image_tag("icon_heart.png")
       Like
