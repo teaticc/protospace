@@ -50,7 +50,7 @@
     .col-md-8
       #comment_list
         = render @prototype.comments
-      = form_for(@comment , url: prototype_comments_path(@prototype), html:{class: "form-inline"}, remote: true) do |f|
+      = form_for([@prototype, @comment], html:{class: "form-inline"}, remote: true) do |f|
         %h4 Write a comment
         .row
           .form-group.col-md-10
