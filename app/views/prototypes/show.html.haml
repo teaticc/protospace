@@ -46,9 +46,12 @@
   .row.proto-comments
     %h4.col-md-12
       Comments
-      %span.num (10)
+      %span.num#js-comments_count
+        (
+        = @prototype.comments.length
+        )
     .col-md-8
-      #comment_list
+      #js-comment_list
         = render @prototype.comments
       = form_for([@prototype, @comment], html:{class: "form-inline"}, remote: true) do |f|
         %h4 Write a comment

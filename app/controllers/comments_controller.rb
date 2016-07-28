@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_prototype, only: :create
   def create
     @prototype.comments.create(comment_params)
+    # N+1問題発生中（includesしても無理）
   end
 
   private
