@@ -1,0 +1,7 @@
+.container.margin-top
+  .row
+    .tag-header
+      %span
+        \#
+        = @tag.name
+    = render partial: "prototypes/prototype", collection: @prototypes
