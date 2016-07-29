@@ -7,6 +7,7 @@ class Prototype < ActiveRecord::Base
   accepts_nested_attributes_for :captured_images, reject_if: proc { |attributes| attributes["img_url"].blank?}
   validates :title, :copy, :concept , presence: true
   scope :popular, -> {order(goods_count: :desc)}
+  acts_as_taggable_on :tags
 
   def img_get(img_type)
     if img_type == "main"
