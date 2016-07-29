@@ -1,10 +1,11 @@
 class Prototype < ActiveRecord::Base
   belongs_to :user
   has_many :captured_images, dependent: :destroy
-  has_one :main, class_name: :captured_image
+  has_many :goods
+  has_one :main, class_name: :captured_image #eager_loadのためだがうまくいってない
   accepts_nested_attributes_for :captured_images, reject_if: proc { |attributes| attributes["img_url"].blank?}
   validates :title, :copy, :concept , presence: true
-  has_many :goods
+  scope :popular, -> {order(goods_count: :desc)}
 
   def img_get(img_type)
     if img_type == "main"
