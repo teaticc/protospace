@@ -55,3 +55,5 @@ gem 'rmagick'
 gem "kaminari"
 gem "foreigner"
 gem "bullet"
+gem "acts-as-taggable-on"
+gem "config"
