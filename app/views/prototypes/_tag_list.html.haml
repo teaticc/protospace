@@ -1,0 +1,3 @@
+- Settings.tag_types.each_with_index do |type,i|
+  .col-md-3
+    = text_field_tag "prototype[tag_list][]",@prototype.tag_list[i], placeholder: type
