@@ -19,6 +19,6 @@
           = link_to "by #{prototype.user.name}", user_path(prototype)
         .proto-posted
           = prototype.created_at.strftime("%b %d")
-      - unless prototype.tags.empty?
+      - if prototype.tags.first
         %ul.proto-tag-list.list-inline
-          = render "prototypes/tag_list", tag_list: prototype.tags
+          = render "prototypes/tags", tags: prototype.tags
