@@ -1,0 +1,3 @@
+$("#comment_comment").val("");
+$("#js-comment_list").html("<%= j(render @prototype.comments) %>");
+$("#js-comments_count").html("(<%= @prototype.comments.length %>)");
