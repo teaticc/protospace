@@ -38,10 +38,7 @@
     .col-md-3
       %h4 Tag List
       %ul.proto-tag-list.list-inline
-        %li
-          = link_to "iPad","#", class:"btn btn-default"
-        %li
-          = link_to "wireframe","#", class:"btn btn-default"
+        = render "tag_list", tag_list: @prototype.tags
   .row.proto-comments
     %h4.col-md-12
       Comments
