@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20160728023837) do
     t.integer  "prototype_id", limit: 4
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.integer  "prototype_id", limit: 4
+    t.text     "comment",      limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "goods", force: :cascade do |t|
     t.integer  "user_id",      limit: 4
     t.integer  "prototype_id", limit: 4
@@ -63,4 +71,4 @@ ActiveRecord::Schema.define(version: 20160728023837) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
+end

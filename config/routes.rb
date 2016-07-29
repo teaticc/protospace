@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   resources :prototypes do
     resources :goods, only: [:create, :destroy]
+    resources :comments, only: :create
   end
   resources :users, only: [:edit, :show, :index, :update]
 end
