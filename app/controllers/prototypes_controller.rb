@@ -13,7 +13,6 @@ class PrototypesController < ApplicationController
 
   def create
     @prototype = Prototype.new(prototype_params)
-    binding.pry
     if @prototype.save
       redirect_to root_path, notice: "投稿しました"
     else
