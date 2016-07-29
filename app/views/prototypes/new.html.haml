@@ -1,9 +1,4 @@
-- if @prototype.errors.any?
-  #error_explanation
-    %ul.alert-error.alert
-      = link_to "×", "#", "data-dismiss": "alert", class: "close"
-      - @prototype.errors.full_messages.each do |msg|
-        %li= msg
+= render "validation_error"
 = form_for(@prototype, html: {class: "container proto-new"}) do |f|
   .col-md-8.col-md-offset-2
     %header.row.user-nav.row
