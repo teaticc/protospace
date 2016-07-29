@@ -54,3 +54,4 @@ gem 'carrierwave'
 gem 'rmagick'
 gem "kaminari"
 gem "foreigner"
+gem "bullet"
