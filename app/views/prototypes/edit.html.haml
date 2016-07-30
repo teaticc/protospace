@@ -17,7 +17,7 @@
               %li.list-group-item.col-md-4
                 .image-upload.height200
                   = captured_image.file_field :img_url, class: "js-img_preview"
-                  = image_tag captured_image.object.img_url, class: "add_fit_img"
+                  = image_tag captured_image.object.img_url, class: "js-add_fit_img"
                   = captured_image.hidden_field :img_type, value: "sub"
       .row.proto-description
         .col-md-12
