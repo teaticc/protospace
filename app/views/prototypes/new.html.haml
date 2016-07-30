@@ -8,7 +8,8 @@
       = f.fields_for :captured_images do |captured_image|
         .col-md-12
           .cover-image-upload.height500
-            = captured_image.file_field :img_url
+            = captured_image.file_field :img_url, class: "js-img_preview"
+            = image_tag ""
             = captured_image.hidden_field :img_type, value: "main"
       .col-md-12
         %ul.proto-sub-list.list-group
@@ -16,7 +17,8 @@
             %li.list-group-item.col-md-4
               .image-upload.height200
                 = f.fields_for :captured_images do |captured_image|
-                  = captured_image.file_field :img_url
+                  = captured_image.file_field :img_url, class: "js-img_preview"
+                  = image_tag ""
                   = captured_image.hidden_field :img_type, value: "sub"
     .row.proto-description
       .col-md-12
