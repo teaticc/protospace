@@ -9,17 +9,16 @@
         = f.fields_for :captured_images, @prototype.captured_images.main do |captured_image|
           .col-md-12
             .cover-image-upload
-              = captured_image.file_field :img_url
+              = captured_image.file_field :img_url, class: "js-img_preview"
               = image_tag @prototype.img_get("main").img_url, class: "fit_img"
         .col-md-12
           %ul.proto-sub-list.list-group
             = f.fields_for :captured_images, @sub_img do |captured_image|
               %li.list-group-item.col-md-4
-                .image-upload
-                  = captured_image.file_field :img_url
+                .image-upload.height200
+                  = captured_image.file_field :img_url, class: "js-img_preview"
+                  = image_tag captured_image.object.img_url, class: "add_fit_img"
                   = captured_image.hidden_field :img_type, value: "sub"
-                  = image_tag captured_image.object.img_url, class: "fit_img"
-                  / 空画像の場合に消せない四角ができてしまう
       .row.proto-description
         .col-md-12
           = f.text_field :copy, placeholder: "Catch Copy"
