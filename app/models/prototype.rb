@@ -6,6 +6,7 @@ class Prototype < ActiveRecord::Base
   has_one :main, class_name: :captured_image #eager_loadのためだがうまくいってない
   accepts_nested_attributes_for :captured_images, reject_if: proc { |attributes| attributes["img_url"].blank?}
   validates :title, :copy, :concept , presence: true
+  validate :must_has_just_one_main_image
   scope :popular, -> {order(goods_count: :desc)}
   acts_as_taggable_on :tags
 
@@ -20,6 +21,12 @@ class Prototype < ActiveRecord::Base
   def sub_img_with_blank
    (4 - self.captured_images.length).times{self.captured_images.build(img_type: "sub")}
    self.captured_images[1..3]
+  end
+
+  def must_has_just_one_main_image
+    unless self.captured_images.select{ |i| i[:img_type] == 0}.length == 1
+      errors.add(:base, "Main image can't be blank")
+    end
   end
 
 end
