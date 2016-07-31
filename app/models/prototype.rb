@@ -4,7 +4,7 @@ class Prototype < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :goods, dependent: :destroy
   has_one :main, class_name: :captured_image #eager_loadのためだがうまくいってない
-  accepts_nested_attributes_for :captured_images, reject_if: proc { |attributes| attributes["img_url"].blank?}
+  accepts_nested_attributes_for :captured_images
   validates :title, :copy, :concept , presence: true
   validate :must_has_just_one_main_image
   scope :popular, -> {order(goods_count: :desc)}
