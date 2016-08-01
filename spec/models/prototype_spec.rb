@@ -37,7 +37,7 @@ describe Prototype do
           it "is missing a image" do
             prototype = build :prototype
             prototype.valid?
-            expect(prototype.errors.messages[:captured_images]).to include("prototype needs just one main image")
+            expect(prototype.errors.messages[:wrong_images]).to include("prototype needs just one main image")
           end
         end
 
@@ -45,7 +45,7 @@ describe Prototype do
           it "has too many images" do
             prototype = build :prototype, :with_two_main_images
             prototype.valid?
-            expect(prototype.errors.messages[:captured_images]).to include("prototype needs just one main image")
+            expect(prototype.errors.messages[:wrong_images]).to include("prototype needs just one main image")
           end
         end
 
