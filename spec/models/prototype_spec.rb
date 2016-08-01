@@ -57,6 +57,11 @@ describe Prototype do
 
   describe "associations" do
 
+    it { should have_many(:goods) }
+    it { should have_many(:comments) }
+    it { should have_many(:captured_images) }
+    it { should belong_to(:user) }
+
     describe "with comments" do
       it "deletes the comments when prototype is deleted" do
         prototype = create :prototype, :with_comments, :with_main_image

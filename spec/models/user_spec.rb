@@ -51,6 +51,10 @@ describe User do
 
   describe "associations" do
 
+    it { should have_many(:comments) }
+    it { should have_many(:goods) }
+    it { should have_many(:prototypes) }
+
     describe "with comments" do
       it "deletes the comments when user is deleted" do
         user = create :user, :with_comments
