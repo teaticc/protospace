@@ -84,6 +84,13 @@ describe Prototype do
       end
     end
 
+    describe "with blank captured_images" do
+      it "rejects creating records with blank img_url" do
+        prototype = build :prototype, :with_main_image
+        prototype.sub_img_with_blank
+        expect(prototype).to be_valid
+      end
+    end
   end
 
   describe '#img_get(img_type)' do
