@@ -21,4 +21,10 @@ describe CapturedImage do
 
   end
 
+  describe "associations" do
+    describe "with valid associations" do
+      it { should belong_to(:prototype) }
+    end
+  end
+
 end
