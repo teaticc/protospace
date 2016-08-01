@@ -12,12 +12,6 @@ describe CapturedImage do
     end
 
     context "with invalid attributes" do
-      it "is missing img_url" do
-        captured_image = build :captured_image, img_url: nil
-        captured_image.valid?
-        expect(captured_image.errors[:img_url]).to include("can't be blank")
-      end
-
       it "is invalid file" do
         captured_image = build :captured_image, :with_txt_file
         captured_image.valid?
