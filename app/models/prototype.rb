@@ -3,8 +3,7 @@ class Prototype < ActiveRecord::Base
   has_many :captured_images, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :goods, dependent: :destroy
-  has_one :main, class_name: :captured_image #eager_loadのためだがうまくいってない
-  accepts_nested_attributes_for :captured_images
+  accepts_nested_attributes_for :captured_images, reject_if: proc { |attributes| attributes["img_url"].blank?}
   validates :title, :copy, :concept , presence: true
   validate :must_has_just_one_main_image
   scope :popular, -> {order(goods_count: :desc)}
@@ -25,7 +24,7 @@ class Prototype < ActiveRecord::Base
 
   def must_has_just_one_main_image
     unless self.captured_images.select{ |i| i[:img_type] == 0}.length == 1
-      errors.add(:base, "Main image can't be blank")
+      errors.add(:captured_images, "prototype needs just one main image")
     end
   end
 
