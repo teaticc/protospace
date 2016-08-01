@@ -19,6 +19,14 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_two_main_images do
+      after(:build) do |prototype|
+        2.times do
+          prototype.captured_images << FactoryGirl.build(:captured_image)
+        end
+      end
+    end
+
     trait :with_goods do
       after(:build) do |prototype|
         3.times do

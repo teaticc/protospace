@@ -31,6 +31,26 @@ describe Prototype do
         expect(prototype.errors.messages[:concept]).to include("can't be blank")
       end
 
+      describe '#must_has_just_one_main_image' do
+
+        context "when it has no image" do
+          it "is missing a image" do
+            prototype = build :prototype
+            prototype.valid?
+            expect(prototype.errors.messages[:captured_images]).to include("prototype needs just one main image")
+          end
+        end
+
+        context "when it has two main images" do
+          it "has too many images" do
+            prototype = build :prototype, :with_two_main_images
+            prototype.valid?
+            expect(prototype.errors.messages[:captured_images]).to include("prototype needs just one main image")
+          end
+        end
+
+      end
+
     end
 
   end
