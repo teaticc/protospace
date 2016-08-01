@@ -22,7 +22,7 @@ class Prototype < ActiveRecord::Base
    self.captured_images[1..3]
   end
 
-  def must_has_just_one_main_image
+  def must_have_just_one_main_image
     unless self.captured_images.select{ |i| i[:img_type] == 0}.length == 1
       errors.add(:captured_images, "prototype needs just one main image")
     end
