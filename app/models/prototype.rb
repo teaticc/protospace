@@ -5,7 +5,7 @@ class Prototype < ActiveRecord::Base
   has_many :goods, dependent: :destroy
   accepts_nested_attributes_for :captured_images, reject_if: proc { |attributes| attributes["img_url"].blank?}
   validates :title, :copy, :concept , presence: true
-  validate :must_has_just_one_main_image
+  validate :must_have_just_one_main_image
   scope :popular, -> {order(goods_count: :desc)}
   acts_as_taggable_on :tags
 
@@ -23,8 +23,8 @@ class Prototype < ActiveRecord::Base
   end
 
   def must_have_just_one_main_image
-    unless self.captured_images.select{ |i| i[:img_type] == 0}.length == 1
-      errors.add(:captured_images, "prototype needs just one main image")
+    unless self.captured_images.select{ |i| i.main? }.length == 1
+      errors.add(:wrong_images, "prototype needs just one main image")
     end
   end
 

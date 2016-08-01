@@ -14,7 +14,7 @@ FactoryGirl.define do
       after(:build) do |prototype|
         prototype.captured_images << FactoryGirl.build(:captured_image)
         3.times do
-          prototype.captured_images << FactoryGirl.build(:captured_image, img_type: 1)
+          prototype.captured_images << FactoryGirl.build(:captured_image, img_type: "sub")
         end
       end
     end
