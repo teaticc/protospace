@@ -31,7 +31,7 @@ describe Prototype do
         expect(prototype.errors.messages[:concept]).to include("can't be blank")
       end
 
-      describe '#must_has_just_one_main_image' do
+      describe '#must_have_just_one_main_image' do
 
         context "when it has no image" do
           it "is missing a image" do
