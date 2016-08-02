@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   include Common
   before_action :return_sign_out_user, only: [:edit, :update]
   before_action :set_user
+  before_action :return_other_users, only: [:edit, :update]
 
   def show
     # eager_load効いてない(captured_imagesにもやると逆に遅くなる)
@@ -28,6 +29,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :member, :profile, :avatar, :works)
+  end
+
+  def return_other_users
+    redirect_to root_path unless @user.id == current_user.id
   end
 
 end
