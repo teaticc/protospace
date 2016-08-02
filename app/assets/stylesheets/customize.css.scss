@@ -33,3 +33,9 @@
 .margin-top {
   margin-top: 10px;
 }
+
+.avatar-fit {
+  object-fit: cover;
+  width: 64px;
+  height: 64px;
+}
