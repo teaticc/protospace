@@ -1,0 +1,6 @@
+- if @user.errors.any?
+  #error_explanation
+    %ul.alert-error.alert
+      = link_to "×", "#", "data-dismiss": "alert", class: "close"
+      - @user.errors.full_messages.each do |msg|
+        %li= msg
