@@ -81,6 +81,7 @@ describe UsersController do
       let :other_user do
         create :other_user
       end
+
       it "redirect to root" do
         get :edit, id: other_user
         expect(response).to redirect_to :root
