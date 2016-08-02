@@ -29,7 +29,7 @@ describe UsersController do
     end
 
     describe 'GET #edit' do
-        it "assigns the requested user to @user " do
+      it "assigns the requested user to @user " do
         get :edit, id: @user
         expect(assigns(:user)).to match @user
       end
