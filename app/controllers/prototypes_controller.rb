@@ -1,4 +1,6 @@
 class PrototypesController < ApplicationController
+  include Common
+  before_action :return_sign_out_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_prototype, only: [:show, :edit, :destroy, :update]
 
   def index

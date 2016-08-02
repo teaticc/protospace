@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include Common
+  before_action :return_sign_out_user, only: [:edit, :update]
   before_action :set_user
 
   def show
