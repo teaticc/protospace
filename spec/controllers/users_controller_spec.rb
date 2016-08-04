@@ -9,7 +9,7 @@ describe UsersController do
 
     it "assigns the requested user to @user " do
       get :show, id: user
-      expect(assigns(:user)).to match user
+      expect(assigns(:user)).to eq user
     end
 
     it "renders the :show template" do
@@ -18,84 +18,91 @@ describe UsersController do
     end
   end
 
-  context "when user log in" do
+  context "when user logs in" do
+    let(:user) { create :user }
+    let(:other_user) { create :other_user }
+
     before do
-      @user = create(:user)
-      sign_in @user
+      sign_in user
     end
 
     after do
-      sign_out @user
+      sign_out user
     end
 
-    context "when user edits own user infomation" do
-      describe 'GET #edit' do
-        it "assigns the requested user to @user " do
-          get :edit, id: @user
-          expect(assigns(:user)).to match @user
-        end
+    describe 'GET #edit' do
+      it "assigns the requested user to @user " do
+        get :edit, id: user
+        expect(assigns(:user)).to eq user
+      end
 
+      context "when user edits own user infomation" do
         it "renders the :edit template" do
-          get :edit, id: @user
+          get :edit, id: user
           expect(response).to render_template :edit
         end
       end
 
-      describe 'PATCH #update' do
+      context "when user try to edit other user's information " do
+        it "redirect to root" do
+          get :edit, id: other_user
+          expect(response).to redirect_to :root
+        end
+      end
+    end
 
-        it "assigns the requested user to @user " do
-          patch :update, id: @user, user: attributes_for(:user)
-          expect(assigns(:user)).to match @user
+    describe 'PATCH #update' do
+      let(:request) { patch :update, id: user, user: attributes_for(:other_user) }
+
+      it "assigns the requested user to @user " do
+        request
+        expect(assigns(:user)).to eq user
         end
 
+      context "when user edits own user infomation" do
         context 'when successfully updated' do
           it "updates user" do
-            patch :update, id: @user, user: attributes_for(:user, email: "new@address")
-            @user.reload
-            expect(@user.email).to eq "new@address"
+            expect{ request }.to change{ User.find(user.id).attributes }
           end
 
           it "redirect to index" do
-            patch :update, id: @user, user: attributes_for(:user)
+            request
             expect(response).to redirect_to :root
           end
         end
 
         context "when failed to update" do
-          it "doesn't change user" do
-            old_name = @user.name
-            patch :update, id: @user, user: attributes_for(:user, name: nil)
-            @user.reload
-            expect(@user.name).to eq old_name
+          let(:bad_request) { patch :update, id: user, user: attributes_for(:other_user, name: nil) }
+
+          it "doesn't change the user" do
+            expect{ bad_request }.not_to change{ User.find(user.id).attributes }
           end
 
-          it "redirect to edit" do
-            patch :update, id: @user, user: attributes_for(:user, name: nil)
+          it "redirects to edit" do
+            bad_request
             expect(response).to render_template :edit
           end
         end
       end
-    end
 
-    context "when user try to edit other user's information " do
-      let :other_user do
-        create :other_user
-      end
+      context "when user try to edit other user's information " do
+        let(:others_request) {patch :update, id: other_user, user: attributes_for(:user)}
 
-      it "redirect to root" do
-        get :edit, id: other_user
-        expect(response).to redirect_to :root
-      end
+        it "doesn't change the user" do
+          expect{ others_request }.not_to change{ User.find(other_user.id).attributes }
+        end
 
-      it "redirect to root" do
-        get :update, id: other_user
-        expect(response).to redirect_to :root
+        it "redirects to root" do
+          others_request
+          expect(response).to redirect_to :root
+        end
       end
     end
+
 
   end
 
-  context "when user log out" do
+  context "when user logs out" do
 
     it "redirect to root" do
       get :edit, id: rand(100)
