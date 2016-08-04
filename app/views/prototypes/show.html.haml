@@ -44,15 +44,16 @@
       Comments
       %span.num#js-comments_count
         (
-        = @prototype.comments.length
+        = @comments.length
         )
     .col-md-8
       #js-comment_list
-        = render @prototype.comments
+        = render @comments
       = form_for([@prototype, @comment], html:{class: "form-inline"}, remote: true) do |f|
-        %h4 Write a comment
-        .row
-          .form-group.col-md-10
-            = f.text_area :comment, placeholder: "Your comments", rows:"3"
-          .form-group.col-md-2
-            = f.button "Comment", class: "btn btn-primary"
+        - if user_signed_in?
+          %h4 Write a comment
+          .row
+            .form-group.col-md-10
+              = f.text_area :comment, placeholder: "Your comments", rows:"3"
+            .form-group.col-md-2
+              = f.button "Comment", class: "btn btn-primary"
