@@ -13,8 +13,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    # @user.update(user_params) なぜか機能しない
-    if @user.update_attributes(name: user_params[:name], email: user_params[:email], member:user_params[:member], profile: user_params[:profile], avatar: user_params[:avatar], works: user_params[:works])
+    if @user.update(user_params)
       redirect_to root_path, notice: "successfully updated!"
     else
       render :edit
