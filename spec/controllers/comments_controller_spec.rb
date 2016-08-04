@@ -22,7 +22,6 @@ describe CommentsController do
 
       it "assigns a new comments list to @comments" do
         request
-        binding.pry
         expect(assigns(:comments)).to eq Comment.where(prototype_id: prototype.id)
       end
 
