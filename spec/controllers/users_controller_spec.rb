@@ -1,25 +1,22 @@
 require "rails_helper"
 
 describe UsersController do
+  let(:user) { create :user }
 
   describe 'GET #show' do
-    let :user do
-      create :user
-    end
-
+    let(:request) { get :show, id: user }
     it "assigns the requested user to @user " do
-      get :show, id: user
+      request
       expect(assigns(:user)).to eq user
     end
 
     it "renders the :show template" do
-      get :show, id: user
+      request
       expect(response).to render_template :show
     end
   end
 
   context "when user logs in" do
-    let(:user) { create :user }
     let(:other_user) { create :other_user }
 
     before do
@@ -63,6 +60,11 @@ describe UsersController do
         context 'when successfully updated' do
           it "updates user" do
             expect{ request }.to change{ User.find(user.id).attributes }
+          end
+
+          it "flash a message" do
+            request
+            expect(flash[:notice]).to eq "successfully updated!"
           end
 
           it "redirect to index" do
