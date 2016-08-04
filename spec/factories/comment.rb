@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :comment, class: Comment do
-    comment "すごい！"
+    comment Faker::Lorem.word
   end
 end
