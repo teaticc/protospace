@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :prototype, class: Prototype do
     title Faker::App.name
-    copy "tester"
-    concept "for test"
+    copy Faker::Lorem.word
+    concept Faker::Lorem.sentence
 
     trait :with_main_image do
       after(:build) do |prototype|
@@ -44,4 +44,19 @@ FactoryGirl.define do
     end
 
   end
+
+  factory :other_prototype, class: Prototype do
+    title Faker::App.name
+    copy Faker::Lorem.word
+    concept Faker::Lorem.sentence
+
+    with_main_image
+
+    trait :with_main_image do
+      after(:build) do |prototype|
+        prototype.captured_images << FactoryGirl.build(:captured_image)
+      end
+    end
+  end
+
 end

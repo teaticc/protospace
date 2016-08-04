@@ -6,8 +6,6 @@ module Common
   end
 
   def return_sign_out_user
-    unless user_signed_in?
-      redirect_to root_path, notice: "please sign in"
-    end
+    redirect_to root_path, notice: "please sign in" unless user_signed_in?
   end
 end
