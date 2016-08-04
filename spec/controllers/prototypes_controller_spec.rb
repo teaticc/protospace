@@ -74,7 +74,7 @@ describe PrototypesController do
 
         it "flash a message" do
           request
-          expect(flash[:notice]).not_to be_empty
+          expect(flash[:notice]).to eq "successfully posted"
         end
 
         it "redirects to root" do
@@ -143,7 +143,7 @@ describe PrototypesController do
         end
 
         it "flash a message" do
-          expect(flash[:notice]).not_to be_empty
+          expect(flash[:notice]).to eq "successfully updated"
         end
 
         it { expect(response).to redirect_to :root }
@@ -194,7 +194,7 @@ describe PrototypesController do
 
       it "flash a message" do
         request
-        expect(flash[:notice]).not_to be_empty
+        expect(flash[:notice]).to eq "successfully deleted"
       end
 
       it "redirect to index" do
