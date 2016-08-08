@@ -222,29 +222,30 @@ describe PrototypesController do
   end
 
   context "when user logs out" do
+    subject { response }
     it "redirects to root" do
       post :create, prototype: attributes_for(:prototype)
-      expect(response).to redirect_to :root
+      is_expected.to redirect_to :root
     end
 
     it "redirects to root" do
       get :new
-      expect(response).to redirect_to :root
+      is_expected.to redirect_to :root
     end
 
     it "redirects to root" do
       get :edit, id: prototype.id
-      expect(response).to redirect_to :root
+      is_expected.to redirect_to :root
     end
 
     it "redirects to root" do
       patch :update, id: prototype.id, prototype: attributes_for(:other_prototype)
-      expect(response).to redirect_to :root
+      is_expected.to redirect_to :root
     end
 
     it "redirects to root" do
       delete :destroy, id: prototype.id
-      expect(response).to redirect_to :root
+      is_expected.to redirect_to :root
     end
   end
 end
