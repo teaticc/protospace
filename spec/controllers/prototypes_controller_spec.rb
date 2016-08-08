@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe PrototypesController do
+  let(:user){ create :user, :with_prototype}
+  let(:prototype){ user.prototypes.first }
+
   describe 'GET #index' do
     let(:request) { get :index }
 
@@ -32,8 +35,6 @@ describe PrototypesController do
   context "when user logs in" do
     let(:other_prototype){ build :other_prototype, :with_main_image }
     let(:other_user){ create :other_user, :with_other_prototype }
-    let(:user){ create :user, :with_prototype}
-    let(:prototype){ user.prototypes.first }
 
     before do
       sign_in user
@@ -221,8 +222,6 @@ describe PrototypesController do
   end
 
   context "when user logs out" do
-    let(:user) { create :user, :with_prototype }
-    let(:prototype) { user.prototypes.first }
     it "redirects to root" do
       post :create, prototype: attributes_for(:prototype)
       expect(response).to redirect_to :root
