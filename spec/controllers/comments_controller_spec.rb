@@ -3,10 +3,10 @@ require 'rails_helper'
 describe CommentsController do
   describe 'POST #create' do
     let(:prototype) {create :prototype, :with_main_image}
+    let(:request) { xhr :post, :create, prototype_id: prototype.id, comment: attributes_for(:comment) }
 
     context "when user signs in" do
       let(:user) { create :user }
-      let(:request) { xhr :post, :create, prototype_id: prototype.id, comment: attributes_for(:comment) }
 
       before do
         sign_in user
@@ -29,13 +29,21 @@ describe CommentsController do
         request
         expect(response.code).to eq "200"
       end
+
+      it "renders :create template" do
+        request
+        expect(response).to render_template :create
+      end
     end
 
     context "when user signs out" do
       it "doesn't create a comment" do
+        expect{ request }.not_to change{ Comment.count }
       end
 
       it "redirects to root" do
+        post :create, prototype_id: prototype.id, comment: attributes_for(:comment)
+        expect(response).to redirect_to :root
       end
     end
   end
