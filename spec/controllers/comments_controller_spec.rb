@@ -30,7 +30,7 @@ describe CommentsController do
         expect(response.code).to eq "200"
       end
 
-      it "renders :create template" do
+      it "renders :create template (actually it is a js file)" do
         request
         expect(response).to render_template :create
       end
