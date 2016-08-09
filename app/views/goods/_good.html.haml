@@ -12,7 +12,8 @@
       %span.num
         = prototype.goods_count
 - else
-  = image_tag("icon_heart.svg")
-  Like
-  %span.num
-    = prototype.goods_count
+  %button.btn.btn-default
+    = image_tag("icon_heart.svg")
+    Like
+    %span.num
+      = prototype.goods_count
