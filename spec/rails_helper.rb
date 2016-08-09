@@ -74,6 +74,7 @@ RSpec.configure do |config|
   config.extend ControllerMacros, :type => :controller
   config.include FeatureHelpers, :type => :feature
   config.include Warden::Test::Helpers
+  config.include AjaxHelper, type: :feature
   config.before :suite do
     Warden.test_mode!
   end
