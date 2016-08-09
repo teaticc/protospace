@@ -16,7 +16,7 @@
         =prototype.title
       .proto-meta
         .proto-user
-          = link_to "by #{prototype.user.name}", user_path(prototype)
+          = link_to "by #{prototype.user.name}", user_path(prototype.user_id)
         .proto-posted
           = prototype.created_at.strftime("%b %d")
       - if prototype.tags.any?

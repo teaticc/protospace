@@ -1,5 +1,8 @@
 class PrototypesController < ApplicationController
+  include Common
+  before_action :return_sign_out_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_prototype, only: [:show, :edit, :destroy, :update]
+  before_action :return_other_users, only: [:edit, :destroy, :update]
 
   def index
     # eager_loadがcaptured_imagesに効いてない<=要修正
@@ -14,14 +17,15 @@ class PrototypesController < ApplicationController
   def create
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
-      redirect_to root_path, notice: "投稿しました"
+      redirect_to root_path, notice: "successfully posted"
     else
       render :new
     end
   end
 
   def show
-     @comment = Comment.new
+    @comment = Comment.new
+    @comments = Comment.where(prototype_id: params[:id]).includes(:user)
   end
 
   def edit
@@ -30,16 +34,14 @@ class PrototypesController < ApplicationController
 
   def update
     if @prototype.update(prototype_params)
-      redirect_to root_path, notice: "successfully updated!"
+      redirect_to root_path, notice: "successfully updated"
     else
       render :edit
     end
   end
 
   def destroy
-    if @prototype.user_id == current_user.id
-      @prototype.destroy
-    end
+    @prototype.destroy
     redirect_to root_path, notice: "successfully deleted"
   end
 
@@ -51,5 +53,9 @@ class PrototypesController < ApplicationController
 
   def prototype_params
     params.require(:prototype).permit(:copy, :concept, :title, tag_list: [], captured_images_attributes: [:img_url, :img_type, :id]).merge(user_id: current_user.id)
+  end
+
+  def return_other_users
+    redirect_to root_path unless @prototype.user_id == current_user.id
   end
 end
