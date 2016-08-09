@@ -21,4 +21,4 @@
           = prototype.created_at.strftime("%b %d")
       - if prototype.tags.any?
         %ul.proto-tag-list.list-inline
-          = render "prototypes/tags", tags: prototype.tags
+          = render partial: "prototypes/tags", collection: prototype.tags, as: :tag
