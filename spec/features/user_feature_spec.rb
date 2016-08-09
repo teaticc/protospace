@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user function" do
+feature "user" do
   let(:user) { create :user }
 
   scenario "sign up" do
@@ -16,7 +16,7 @@ feature "user function" do
     attach_file "user_avatar", "#{::Rails.root}/spec/images/avatar.jpg"
     click_button "save"
     expect(page).to have_content "テストくん"
-    page.save_screenshot "sign_up.png"
+    # page.save_screenshot "sign_up.png"
   end
 
   scenario "sign in" do
@@ -43,8 +43,18 @@ feature "user function" do
     fill_in "user_password", with: "123456"
     fill_in "user_name", with: "New Name"
     click_button "save"
-    page.save_screenshot "edit_profile.png"
     expect(page).to have_content "New Name"
+  end
+
+  scenario "show my page" do
+    login user
+    visit root_path
+    click_link user.name
+    click_link "My Page"
+    # このタイミングで下２行を実行してもなぜかページ遷移前のまま(pageが遅延評価されてる？)
+    # save_and_open_page
+    # save_screenshot "show_my_page.png"
+    expect(page).to have_selector ".media-heading", text: user.name
   end
 
 end
