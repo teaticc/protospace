@@ -38,7 +38,7 @@
     .col-md-3
       %h4 Tag List
       %ul.proto-tag-list.list-inline
-        = render "tags", tags: @prototype.tags
+        = render partial: "tags", collection: @prototype.tags, as: :tag
   .row.proto-comments
     %h4.col-md-12
       Comments

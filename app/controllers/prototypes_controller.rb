@@ -6,7 +6,7 @@ class PrototypesController < ApplicationController
 
   def index
     # eager_loadがcaptured_imagesに効いてない<=要修正
-    @prototypes = Prototype.order(id: :desc).includes(:tags).eager_load(:user).page(params[:page])
+    @prototypes = Prototype.order(id: :desc).includes(:user, :tags).page(params[:page])
   end
 
   def new

@@ -46,6 +46,8 @@ group :test do
   gem "launchy"
   gem "poltergeist"
   gem "shoulda-matchers"
+  gem "selenium-webdriver"
+  gem "chromedriver-helper"
 end
 
 group :development do
