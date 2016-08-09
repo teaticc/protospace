@@ -59,6 +59,10 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  config.include FactoryGirl::Syntax::Methods
+  # ログイン/アウト機能のため
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.extend ControllerMacros, :type => :controller
 end
 
 Shoulda::Matchers.configure do |config|
