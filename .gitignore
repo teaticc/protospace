@@ -16,9 +16,6 @@
 !/log/.keep
 /tmp
 
-# Ignore database.yml file
-/config/database.yml
-
 # Ignore uploaded files
 /public/uploads
 
