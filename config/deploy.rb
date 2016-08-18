@@ -2,7 +2,7 @@
 lock '3.6.0'
 
 set :application, 'protospace'
-set :repo_url, 'git@example.com:teaticc/protospace.git'
+set :repo_url, 'git@github.com:teaticc/protospace.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
