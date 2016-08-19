@@ -47,7 +47,7 @@ set :default_env, {
   rbenv_root: "/usr/local/rbenv",
   path: "~/.rbenv/shims:~/.rbenv/bin:$PATH",
   ACCESS_KEY_ID: ENV["ACCESS_KEY_ID"],
-  SECRET_ACCESS_KEY: ENV["SECRET_ACCESS_KEY"]
+  SECRET_ACCESS_KEY: ENV["SECRET_ACCESS_KEY"],
   SECRET_KEY_BASE: ENV["SECRET_KEY_BASE"]
 }
 
