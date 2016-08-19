@@ -36,6 +36,8 @@ set :deploy_to, '/home/tester/protospace'
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
+# Defaults to false. If true, it's skip migration if files in db/migrate not modified
+set :conditionally_migrate, true
 
 set :keep_releases, 5
 
