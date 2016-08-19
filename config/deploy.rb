@@ -48,6 +48,7 @@ set :default_env, {
   path: "~/.rbenv/shims:~/.rbenv/bin:$PATH",
   ACCESS_KEY_ID: ENV["ACCESS_KEY_ID"],
   SECRET_ACCESS_KEY: ENV["SECRET_ACCESS_KEY"]
+  SECRET_KEY_BASE: ENV["SECRET_KEY_BASE"]
 }
 
 namespace :deploy do
